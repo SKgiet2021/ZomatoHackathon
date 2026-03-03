@@ -1,47 +1,125 @@
-# 🛵 Zomathon 2026: PS1 - Kitchen Prep Time (KPT) Prediction ⏱️
+# 🍕 Zomathon-PS1-KPT: Kitchen Prep Time Prediction Solution
 
-**Problem:** Zomato's Kitchen Prep Time prediction is inaccurate because merchants mark "Food Ready" when the rider arrives, not when the food is ACTUALLY ready. This corrupts training data, inflates rider wait times, and ruins the ETA experience.
+> **Zomathon 2026** | Problem Statement: PS1 - Kitchen Prep Time (KPT) Prediction
+> Team: **ShadowFX**
 
-## ✨ Our 3-Layer Solution
+---
 
-- **LAYER 1 (Rider Location Transparency):** Merchant app provides real-time rider location and ETA countdown. Merchants are scored on "Food Ready" accuracy. High accuracy unlocks priority routing and lower commissions!
-- **LAYER 2 (Barcode Verification):** Targeted at the bottom 5% of merchants. They must pack the food, generate a QR code, snap a photo, and ONLY THEN can they mark "Food Ready".
-- **LAYER 3 (Kitchen Load Visibility):** POS integration for large chains to track total orders. Kitchen Rush Slider (Green/Yellow/Red) for smaller merchants to signal peak load to the KPT model.
+## 🎯 The Problem in One Line
 
-## � Expected Impact
+Zomato's Kitchen Prep Time predictions are inaccurate because merchants mark "Food Ready" when the rider arrives—not when the food is actually ready—corrupting training data and causing wrong ETAs, longer wait times, and more cancellations.
 
-| Metric                     | Before   | After   |
-| :------------------------- | :------- | :------ |
-| **Avg Rider Wait Time**    | 12.3 min | 8.1 min |
-| **FOR Accuracy**           | 60%      | 87%     |
-| **Orders with 5min+ Wait** | 42%      | 18%     |
+---
+
+## 💡 Our 3-Layer Solution
+
+### Layer 1: Rider Location Transparency (Main Solution)
+
+- Merchant app shows **real-time rider location** + ETA countdown
+- Merchants get an **Accuracy Score (0-100)** on their dashboard
+- High accuracy unlocks **rewards**: priority routing, lower commission, leaderboard badges
+
+### Layer 2: Barcode Verification (Bottom 5% Merchants Only)
+
+- Kitchen packs food → generates QR code → takes photo → uploads
+- "Mark Food Ready" button **only unlocks after photo upload**
+- Thermal printers for large chains, app QR for medium, Layer 1 only for dhabas
+
+### Layer 3: Kitchen Load Visibility
+
+- POS integration for top 500 chains (anonymous order count)
+- **Kitchen Rush Slider** (Green/Yellow/Red) for all other merchants
+- KPT model uses this as extra feature for rush hour prediction
+
+---
+
+## 📊 Expected Impact
+
+| Metric                    | Before   | After   | Improvement |
+| ------------------------- | -------- | ------- | ----------- |
+| Avg Rider Wait Time       | 12.3 min | 8.1 min | ⬇️ 34%      |
+| FOR (Food Ready) Accuracy | 60%      | 87%     | ⬆️ 45%      |
+| Orders with 5min+ Wait    | 42%      | 18%     | ⬇️ 57%      |
+
+---
 
 ## 🚀 How to Run the Simulation
 
-We've built a Monte Carlo simulation to prove the impact of our solution across 1000 simulated restaurants over 30 days.
+```bash
+# Clone the repo
+git clone https://github.com/[your-username]/Zomathon-PS1-KPT.git
+cd Zomathon-PS1-KPT
 
-1.  **Install requirements:**
-    ```bash
-    pip install numpy pandas matplotlib seaborn
-    ```
-2.  **Run the script:**
-    ```bash
-    python simulation/kpt_simulation.py
-    ```
-    _This will generate a clean CSV dataset and graphs in the `simulation/results/` folder._
+# Install dependencies
+pip install numpy pandas matplotlib seaborn
 
-## �‍💻 Team: [Your Team Name]
+# Run the Monte Carlo simulation
+python simulation/kpt_simulation.py
+```
 
-- [Team Member 1 Name]
-- [Team Member 2 Name]
-- [Team Member 3 Name]
+The simulation will:
+
+1. Print a summary table in the terminal
+2. Generate `simulation/results/simulation_output.csv`
+3. Generate `simulation/results/simulation_graphs.png` with 4 visualizations
+
+---
+
+## 👥 Team ShadowFX
+
+| Name             | Role                |
+| ---------------- | ------------------- |
+| Swadhin Kumar    | Team Lead & Backend |
+| Suraj Ku. Behera | Frontend & ML       |
+
+---
 
 ## 🛠️ Tech Stack
 
-- **Simulation:** Python (Pandas, Numpy, Matplotlib, Seaborn)
-- **System Architecture:** Proposed Microservices (Node.js, Python/FastAPI for ML, Redis for spatial tracking)
-- **Mockups:** Figma
+- **Backend**: Python, FastAPI
+- **Mobile**: React Native (Merchant & Rider Apps)
+- **ML/AI**: scikit-learn, XGBoost for KPT model
+- **Real-time**: WebSockets for GPS tracking
+- **Database**: PostgreSQL + Redis
+- **Cloud**: AWS/GCP
+
+---
+
+## 📄 Documentation
+
+- [Problem Analysis](docs/problem_analysis.md) - Deep dive into why FOR signals fail
+- [Cost Analysis](docs/cost_analysis.md) - Breakdown of implementation costs
+- [Architecture](architecture/architecture_description.md) - System design overview
+- [Mockups](mockups/mockups_description.md) - UI/UX descriptions
+
+---
 
 ## 📎 Links
 
-- [Proposal PDF Placeholder]
+- [Proposal PDF](link-to-proposal-pdf) ← Add your proposal document link here
+- [Demo Video](link-to-demo) ← Add demo video link here
+
+---
+
+## 📁 Project Structure
+
+```
+Zomathon-PS1-KPT/
+├── README.md
+├── simulation/
+│   ├── kpt_simulation.py
+│   └── results/
+│       ├── simulation_output.csv
+│       └── simulation_graphs.png
+├── mockups/
+│   └── mockups_description.md
+├── architecture/
+│   └── architecture_description.md
+└── docs/
+    ├── problem_analysis.md
+    └── cost_analysis.md
+```
+
+---
+
+_Built with ❤️ for Zomathon 2026_
